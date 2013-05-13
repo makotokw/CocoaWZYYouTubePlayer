@@ -1,0 +1,14 @@
+//
+//  AppDelegate.h
+//  MoviePlayerDemo
+//
+//  Copyright (c) 2013 makoto_kw. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
+@end
