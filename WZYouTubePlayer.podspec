@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Core' do |core|
     core.source_files = 'WZYouTubePlayer/Core/*.{h,m}'
-    core.exclude_files = 'WZYouTubePlayer/Core/*+Private.h';
+    core.public_header_files = /WZYouTubePlayer\/Core\/[\w_-]+(?!\+Private|\+Local)\.h/;
   end
 
   s.subspec 'MoviePlayer' do |mp|
