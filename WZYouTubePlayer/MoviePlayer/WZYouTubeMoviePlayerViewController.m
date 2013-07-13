@@ -44,7 +44,7 @@
 {
     if (self = [super init]) {
         WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithWatchURL:watchURL];
-        [self setVideo:video];
+        [self playVideo:video completionHandler:nil];
     }
     return self;
 }
@@ -53,7 +53,7 @@
 {
     if (self = [super init]) {
         WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithVideoID:videoID];
-        [self setVideo:video];
+        [self playVideo:video completionHandler:nil];
     }
     return self;
 }
@@ -61,12 +61,12 @@
 - (id)initWithVideo:(WZYouTubeVideo *)video
 {
     if (self = [super init]) {
-        [self setVideo:video];
+        [self playVideo:video completionHandler:nil];
     }
     return self;
 }
 
-- (void)setVideo:(WZYouTubeVideo *)video
+- (void)playVideo:(WZYouTubeVideo *)video completionHandler:(WZYouTubeAsyncBlock)completionHandler
 {
     _video = video;
     __weak WZYouTubeMoviePlayerViewController *me = self;
@@ -76,12 +76,10 @@
             me.moviePlayer.contentURL = mediaURL;
             [me.moviePlayer play];
         }
+        if (completionHandler) {
+            completionHandler(error);
+        }        
     }];
-}
-
--(void)youTubeVideo:(WZYouTubeVideo *)video didFailProcessWatchPageWithError:(NSError *)error
-{
-    
 }
 
 @end

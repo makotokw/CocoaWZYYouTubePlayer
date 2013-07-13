@@ -138,31 +138,13 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     NSString* html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     if (html.length > 0) {
-        
-        NSString *start = nil;
-        NSString *startFull = @"ls.setItem('PIGGYBACK_DATA', \")]}'";
-        NSString *startShrunk = [startFull stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        if ([html rangeOfString:startFull].location != NSNotFound) {
-            start = startFull;
-        }
-        else if ([html rangeOfString:startShrunk].location != NSNotFound) {
-            start = startShrunk;
-        } else {
-            error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                               code:WZYouTubeVideoErrorCodeNoJSONData
-                                           userInfo:[NSDictionary dictionaryWithObject:@"The JSON data could not be found." forKey:NSLocalizedDescriptionKey]];
+               
+        NSString *jsonString = [self extractBootstrapData:html];
+        if (!jsonString) {
+            jsonString = [self extractPiggybackData:html];
         }
         
-        if (start != nil) {
-            
-            NSScanner* scanner = [NSScanner scannerWithString:html];
-            [scanner scanUpToString:start intoString:nil];
-            [scanner scanString:start intoString:nil];
-            
-            NSString *jsonString = nil;
-            [scanner scanUpToString:@"\");" intoString:&jsonString];
-            jsonString = [self unescapeString:jsonString];
+        if (jsonString) {
             
             NSError *jsonError = nil;                        
             NSDictionary* jsonData = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&jsonError];
@@ -199,6 +181,10 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
                                                    code:WZYouTubeVideoErrorCodeNoJSONData
                                                userInfo:@{NSLocalizedDescriptionKey: @"The JSON data could not be found."}];
             }
+        } else {
+            error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
+                                               code:WZYouTubeVideoErrorCodeNoJSONData
+                                           userInfo:[NSDictionary dictionaryWithObject:@"The JSON data could not be found." forKey:NSLocalizedDescriptionKey]];
         }
 
 
@@ -213,20 +199,70 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     }
 }
 
+- (NSString *)extractBootstrapData:(NSString *)html
+{
+    NSString *jsonString = nil;
+    
+    NSString *start = nil;
+    NSString *startFull = @"var bootstrap_data = \")]}'";
+    NSString *startShrunk = [startFull stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if ([html rangeOfString:startFull].location != NSNotFound) {
+        start = startFull;
+    }
+    else if ([html rangeOfString:startShrunk].location != NSNotFound) {
+        start = startShrunk;
+    }
+    
+    if (start) {
+        NSScanner* scanner = [NSScanner scannerWithString:html];
+        [scanner scanUpToString:start intoString:nil];
+        [scanner scanString:start intoString:nil];
+        [scanner scanUpToString:@"\";" intoString:&jsonString];
+        jsonString = [self unescapeString:jsonString];
+    }
+    
+    return jsonString;
+}
+
+- (NSString *)extractPiggybackData:(NSString *)html
+{
+    NSString *jsonString = nil;
+    
+    NSString *start = nil;
+    NSString *startFull = @"ls.setItem('PIGGYBACK_DATA', \")]}'";
+    NSString *startShrunk = [startFull stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if ([html rangeOfString:startFull].location != NSNotFound) {
+        start = startFull;
+    }
+    else if ([html rangeOfString:startShrunk].location != NSNotFound) {
+        start = startShrunk;
+    }
+    
+    if (start) {
+        NSScanner* scanner = [NSScanner scannerWithString:html];
+        [scanner scanUpToString:start intoString:nil];
+        [scanner scanString:start intoString:nil];    
+        [scanner scanUpToString:@"\");" intoString:&jsonString];
+        jsonString = [self unescapeString:jsonString];
+    }   
+        
+    return jsonString;
+}
+
+
 // Modified answer from StackOverflow http://stackoverflow.com/questions/2099349/using-objective-c-cocoa-to-unescape-unicode-characters-ie-u1234
 
--(NSString *)unescapeString:(NSString *)string
+- (NSString *)unescapeString:(NSString *)string
 {
     // will cause trouble if you have "abc\\\\uvw"
-    // \u   --->    \U
+    // \u to \U
     NSString *esc1 = [string stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
-    
-    // "    --->    \"
+    // " to \"
     NSString *esc2 = [esc1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    
-    // \\"  --->    \"
+    // \\" to \"
     NSString *esc3 = [esc2 stringByReplacingOccurrencesOfString:@"\\\\\"" withString:@"\\\""];
-    
     NSString *quoted = [[@"\"" stringByAppendingString:esc3] stringByAppendingString:@"\""];
     NSData *data = [quoted dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -235,7 +271,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     NSString *unesc = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:NULL];
     
     if ([unesc isKindOfClass:[NSString class]]) {
-        // \U   --->    \u
+        // \U to \u
         return [unesc stringByReplacingOccurrencesOfString:@"\\U" withString:@"\\u"];
     }
     return nil;

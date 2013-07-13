@@ -6,6 +6,7 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
+#import "WZYouTubeDefines.h"
 
 @class WZYouTubeVideo;
 
@@ -16,5 +17,7 @@
 - (id)initWithWatchURL:(NSURL *)watchURL;
 - (id)initWithVideoID:(NSString *)videoID;
 - (id)initWithVideo:(WZYouTubeVideo *)video;
+
+- (void)playVideo:(WZYouTubeVideo *)video completionHandler:(WZYouTubeAsyncBlock)completionHandler;
 
 @end

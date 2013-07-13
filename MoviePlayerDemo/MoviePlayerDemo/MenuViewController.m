@@ -108,8 +108,9 @@
     
     if (indexPath.section == 0) {    
         if ([@"ModalViewController" isEqualToString:item[@"title"]]) {
+            NSString *videoId = @"NjXQcGmffu0";
             WZYouTubeMoviePlayerViewController *moviePlayerViewController
-            = [[WZYouTubeMoviePlayerViewController alloc] initWithVideoID:@"NjXQcGmffu0"];
+            = [[WZYouTubeMoviePlayerViewController alloc] initWithVideoID:videoId];
             [self presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
         } else {
             [self performSegueWithIdentifier:item[@"segue"] sender:self];
