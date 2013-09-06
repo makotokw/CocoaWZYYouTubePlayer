@@ -9,7 +9,6 @@
 //
 
 #import "WZYouTubeVideo.h"
-#import "WZYouTubeVideo+Private.h"
 #import "WZYouTubeError.h"
 
 const NSString *kWZYouTubeVideoErrorDomain = @"WZYouTubeVideoErrorDomain";
@@ -20,6 +19,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
 @synthesize videoID = _videoID;
 @synthesize title = _title, mediaDescription = _mediaDescription;
 @synthesize thumbnailURL = _thumbnailURL;
+@synthesize contentAttributes = _contentAttributes;
 @dynamic watchURL;
 
 + (void)initialize
@@ -78,7 +78,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
 - (NSURL *)mediaURLWithQuality:(WZYouTubeVideoQuality)quality
 {
     NSURL *mediaURL = nil;
-    NSArray *videos = [[_contentAttributes objectForKey:@"video"] objectForKey:@"fmt_stream_map"];
+    NSArray *videos = [[_contentAttributes objectForKey:@"player_data"] objectForKey:@"fmt_stream_map"];
 
     if (videos.count) {
         NSString  *URLString;

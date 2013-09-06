@@ -15,6 +15,7 @@
 @property (assign) NSTimeInterval duration;
 @property (retain, readonly) NSURL* watchURL;
 @property (retain) NSURL* thumbnailURL;
+@property (retain, readonly) NSDictionary *contentAttributes;
 
 + (NSURL *)watchURLWithVideoID:(NSString *)videoID;
 

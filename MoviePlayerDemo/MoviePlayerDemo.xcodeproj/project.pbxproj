@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8FAA223317D97A1D0004216C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD7A1173A4FD600DDE0C6 /* CoreGraphics.framework */; };
+		8FACD75117D9738300674B05 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FACD75017D9738300674B05 /* SenTestingKit.framework */; };
+		8FACD75217D9738300674B05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */; };
+		8FACD75317D9738300674B05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */; };
+		8FACD75917D9738300674B05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FACD75717D9738300674B05 /* InfoPlist.strings */; };
+		8FACD75C17D9738300674B05 /* MoviePlayerDemoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FACD75B17D9738300674B05 /* MoviePlayerDemoTest.m */; };
 		8FFBD79E173A4FD600DDE0C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */; };
 		8FFBD7A0173A4FD600DDE0C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */; };
 		8FFBD7A2173A4FD600DDE0C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD7A1173A4FD600DDE0C6 /* CoreGraphics.framework */; };
@@ -26,7 +32,24 @@
 		8FFBD7D9173A507B00DDE0C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD7D8173A507B00DDE0C6 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8FAA223017D979820004216C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FFBD792173A4FD600DDE0C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FFBD799173A4FD600DDE0C6;
+			remoteInfo = MoviePlayerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		8FACD74F17D9738300674B05 /* MoviePlayerDemoTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviePlayerDemoTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FACD75017D9738300674B05 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		8FACD75617D9738300674B05 /* MoviePlayerDemoTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoviePlayerDemoTest-Info.plist"; sourceTree = "<group>"; };
+		8FACD75817D9738300674B05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8FACD75A17D9738300674B05 /* MoviePlayerDemoTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviePlayerDemoTest.h; sourceTree = "<group>"; };
+		8FACD75B17D9738300674B05 /* MoviePlayerDemoTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviePlayerDemoTest.m; sourceTree = "<group>"; };
+		8FACD75D17D9738300674B05 /* MoviePlayerDemoTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoviePlayerDemoTest-Prefix.pch"; sourceTree = "<group>"; };
 		8FFBD79A173A4FD600DDE0C6 /* MoviePlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,7 +69,6 @@
 		8FFBD7C0173A503200DDE0C6 /* WZYouTubePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubePlayer.h; path = ../WZYouTubePlayer/Core/WZYouTubePlayer.h; sourceTree = "<group>"; };
 		8FFBD7C1173A503200DDE0C6 /* WZYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeVideo.h; path = ../WZYouTubePlayer/Core/WZYouTubeVideo.h; sourceTree = "<group>"; };
 		8FFBD7C2173A503200DDE0C6 /* WZYouTubeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeVideo.m; path = ../WZYouTubePlayer/Core/WZYouTubeVideo.m; sourceTree = "<group>"; };
-		8FFBD7C3173A503200DDE0C6 /* WZYouTubeVideo+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WZYouTubeVideo+Private.h"; path = "../WZYouTubePlayer/Core/WZYouTubeVideo+Private.h"; sourceTree = "<group>"; };
 		8FFBD7C6173A503D00DDE0C6 /* WZYouTubeMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeMoviePlayer.h; path = ../WZYouTubePlayer/MoviePlayer/WZYouTubeMoviePlayer.h; sourceTree = "<group>"; };
 		8FFBD7C7173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeMoviePlayerController.h; path = ../WZYouTubePlayer/MoviePlayer/WZYouTubeMoviePlayerController.h; sourceTree = "<group>"; };
 		8FFBD7C8173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeMoviePlayerController.m; path = ../WZYouTubePlayer/MoviePlayer/WZYouTubeMoviePlayerController.m; sourceTree = "<group>"; };
@@ -61,6 +83,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8FACD74B17D9738300674B05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FAA223317D97A1D0004216C /* CoreGraphics.framework in Frameworks */,
+				8FACD75117D9738300674B05 /* SenTestingKit.framework in Frameworks */,
+				8FACD75217D9738300674B05 /* UIKit.framework in Frameworks */,
+				8FACD75317D9738300674B05 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FFBD797173A4FD600DDE0C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,11 +108,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FACD75417D9738300674B05 /* MoviePlayerDemoTest */ = {
+			isa = PBXGroup;
+			children = (
+				8FACD75A17D9738300674B05 /* MoviePlayerDemoTest.h */,
+				8FACD75B17D9738300674B05 /* MoviePlayerDemoTest.m */,
+				8FACD75517D9738300674B05 /* Supporting Files */,
+			);
+			path = MoviePlayerDemoTest;
+			sourceTree = "<group>";
+		};
+		8FACD75517D9738300674B05 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FACD75617D9738300674B05 /* MoviePlayerDemoTest-Info.plist */,
+				8FACD75717D9738300674B05 /* InfoPlist.strings */,
+				8FACD75D17D9738300674B05 /* MoviePlayerDemoTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		8FFBD791173A4FD600DDE0C6 = {
 			isa = PBXGroup;
 			children = (
 				8FFBD7BA173A500200DDE0C6 /* WZYouTubePlayer */,
 				8FFBD7A3173A4FD600DDE0C6 /* MoviePlayerDemo */,
+				8FACD75417D9738300674B05 /* MoviePlayerDemoTest */,
 				8FFBD79C173A4FD600DDE0C6 /* Frameworks */,
 				8FFBD79B173A4FD600DDE0C6 /* Products */,
 			);
@@ -89,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				8FFBD79A173A4FD600DDE0C6 /* MoviePlayerDemo.app */,
+				8FACD74F17D9738300674B05 /* MoviePlayerDemoTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +155,7 @@
 				8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */,
 				8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */,
 				8FFBD7A1173A4FD600DDE0C6 /* CoreGraphics.framework */,
+				8FACD75017D9738300674B05 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,7 +207,6 @@
 				8FFBD7C0173A503200DDE0C6 /* WZYouTubePlayer.h */,
 				8FFBD7C1173A503200DDE0C6 /* WZYouTubeVideo.h */,
 				8FFBD7C2173A503200DDE0C6 /* WZYouTubeVideo.m */,
-				8FFBD7C3173A503200DDE0C6 /* WZYouTubeVideo+Private.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -171,6 +226,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8FACD74E17D9738300674B05 /* MoviePlayerDemoTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FACD76017D9738300674B05 /* Build configuration list for PBXNativeTarget "MoviePlayerDemoTest" */;
+			buildPhases = (
+				8FACD74A17D9738300674B05 /* Sources */,
+				8FACD74B17D9738300674B05 /* Frameworks */,
+				8FACD74C17D9738300674B05 /* Resources */,
+				8FACD74D17D9738300674B05 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FAA223117D979820004216C /* PBXTargetDependency */,
+			);
+			name = MoviePlayerDemoTest;
+			productName = MoviePlayerDemoTest;
+			productReference = 8FACD74F17D9738300674B05 /* MoviePlayerDemoTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8FFBD799173A4FD600DDE0C6 /* MoviePlayerDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FFBD7B7173A4FD600DDE0C6 /* Build configuration list for PBXNativeTarget "MoviePlayerDemo" */;
@@ -210,11 +284,20 @@
 			projectRoot = "";
 			targets = (
 				8FFBD799173A4FD600DDE0C6 /* MoviePlayerDemo */,
+				8FACD74E17D9738300674B05 /* MoviePlayerDemoTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8FACD74C17D9738300674B05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FACD75917D9738300674B05 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FFBD798173A4FD600DDE0C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,7 +312,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8FACD74D17D9738300674B05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		8FACD74A17D9738300674B05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FACD75C17D9738300674B05 /* MoviePlayerDemoTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FFBD796173A4FD600DDE0C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,7 +354,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8FAA223117D979820004216C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FFBD799173A4FD600DDE0C6 /* MoviePlayerDemo */;
+			targetProxy = 8FAA223017D979820004216C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		8FACD75717D9738300674B05 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FACD75817D9738300674B05 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8FFBD7A6173A4FD600DDE0C6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -259,6 +382,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8FACD75E17D9738300674B05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "${BUILT_PRODUCTS_DIR}/MoviePlayerDemo.app/MoviePlayerDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoviePlayerDemoTest/MoviePlayerDemoTest-Prefix.pch";
+				INFOPLIST_FILE = "MoviePlayerDemoTest/MoviePlayerDemoTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8FACD75F17D9738300674B05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "${BUILT_PRODUCTS_DIR}/MoviePlayerDemo.app/MoviePlayerDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoviePlayerDemoTest/MoviePlayerDemoTest-Prefix.pch";
+				INFOPLIST_FILE = "MoviePlayerDemoTest/MoviePlayerDemoTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		8FFBD7B5173A4FD600DDE0C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -344,6 +501,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8FACD76017D9738300674B05 /* Build configuration list for PBXNativeTarget "MoviePlayerDemoTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FACD75E17D9738300674B05 /* Debug */,
+				8FACD75F17D9738300674B05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8FFBD795173A4FD600DDE0C6 /* Build configuration list for PBXProject "MoviePlayerDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
