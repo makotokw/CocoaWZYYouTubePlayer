@@ -16,6 +16,7 @@
 @property (retain, readonly) NSURL* watchURL;
 @property (retain) NSURL* thumbnailURL;
 @property (retain, readonly) NSDictionary *contentAttributes;
+@property (retain, readonly) NSArray *streamMap;
 
 + (NSURL *)watchURLWithVideoID:(NSString *)videoID;
 

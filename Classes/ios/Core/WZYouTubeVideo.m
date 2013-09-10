@@ -10,9 +10,15 @@
 
 #import "WZYouTubeVideo.h"
 #import "WZYouTubeError.h"
+#import "WZYouTubeWatchPageParser.h"
 
 const NSString *kWZYouTubeVideoErrorDomain = @"WZYouTubeVideoErrorDomain";
 static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
+
+@interface WZYouTubeVideo ()
+@property (retain, readwrite) NSDictionary *contentAttributes;
+@property (retain, readwrite) NSArray *streamMap;
+@end
 
 @implementation WZYouTubeVideo
 
@@ -20,6 +26,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
 @synthesize title = _title, mediaDescription = _mediaDescription;
 @synthesize thumbnailURL = _thumbnailURL;
 @synthesize contentAttributes = _contentAttributes;
+@synthesize streamMap = _streamMap;
 @dynamic watchURL;
 
 + (void)initialize
@@ -78,28 +85,27 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
 - (NSURL *)mediaURLWithQuality:(WZYouTubeVideoQuality)quality
 {
     NSURL *mediaURL = nil;
-    NSArray *videos = [[_contentAttributes objectForKey:@"player_data"] objectForKey:@"fmt_stream_map"];
-
-    if (videos.count) {
+    
+    if (_streamMap.count) {
         NSString  *URLString;
         NSString *streamURLKey = @"url";
         switch (quality) {
             case WZYouTubeVideoQualityLarge:
             {
-                URLString = [[videos objectAtIndex:0] objectForKey:streamURLKey];
+                URLString = [[_streamMap objectAtIndex:0] objectForKey:streamURLKey];
                 break;
             }
                 
             case WZYouTubeVideoQualityMedium:
             {
-                NSUInteger index = MIN(videos.count-1, 1);
-                URLString = [[videos objectAtIndex:index] objectForKey:streamURLKey];
+                NSUInteger index = MIN(_streamMap.count-1, 1);
+                URLString = [[_streamMap objectAtIndex:index] objectForKey:streamURLKey];
                 break;
             }
                 
             default:
             {
-                URLString = [[videos lastObject] objectForKey:streamURLKey];
+                URLString = [[_streamMap lastObject] objectForKey:streamURLKey];
                 break;
             }
         }
@@ -124,157 +130,12 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                if (!error) {
                                    NSError *parseError = nil;
-                                   [me processWatchUrlPageWithData:data error:&parseError];
+                                   [[WZYouTubeWatchPageParser defaultParser] parsePageWithData:data copyTo:me error:&parseError];
                                    completionHandler(parseError);
                                } else {
                                    completionHandler(error);
                                }
                            }];
-}
-
-- (void)processWatchUrlPageWithData:(NSData *)data error:(NSError **)theError;
-{
-    NSError *error = nil;
-    NSString* html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    if (html.length > 0) {
-               
-        NSString *jsonString = [self extractBootstrapData:html];
-        if (!jsonString) {
-            jsonString = [self extractPiggybackData:html];
-        }
-        
-        if (jsonString) {
-            
-            NSError *jsonError = nil;                        
-            NSDictionary* jsonData = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&jsonError];
-            
-            if (!jsonError) {
-                _contentAttributes = jsonData[@"content"];
-                if (_contentAttributes.count == 0) {
-                    NSArray *errors = jsonData[@"errors"];
-                    NSString *errorMessage = errors[0];
-                    if (!errorMessage) {
-                        errorMessage = @"The content data could not be found.";
-                    }
-                    error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                                       code:WZYouTubeVideoErrorCodeNoJSONData
-                                                   userInfo:@{NSLocalizedDescriptionKey: errorMessage, @"errors": errors}];
-                } else {                    
-                    NSDictionary *video = _contentAttributes[@"video"];
-                    if (!_title) {
-                        _title = video[@"title"];
-                    }
-                    if (_duration == 0) {
-                        NSNumber *lengthSeconds = video[@"length_seconds"];
-                        _duration = lengthSeconds.doubleValue;
-                    }
-                    if (!_thumbnailURL) {
-                        NSString *thumbnailForWatch = video[@"thumbnail_for_watch"];
-                        if (thumbnailForWatch) {
-                            _thumbnailURL = [NSURL URLWithString:thumbnailForWatch];                            
-                        }
-                    }
-                }
-            } else {
-                error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                                   code:WZYouTubeVideoErrorCodeNoJSONData
-                                               userInfo:@{NSLocalizedDescriptionKey: @"The JSON data could not be found."}];
-            }
-        } else {
-            error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                               code:WZYouTubeVideoErrorCodeNoJSONData
-                                           userInfo:[NSDictionary dictionaryWithObject:@"The JSON data could not be found." forKey:NSLocalizedDescriptionKey]];
-        }
-
-
-    } else {        
-        error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                           code:WZYouTubeVideoErrorCodeInvalidSource
-                                       userInfo:@{NSLocalizedDescriptionKey: @"Couldn't download the HTML source code. URL might be invalid."}];
-    }
-        
-    if (theError) {
-        *theError = error;
-    }
-}
-
-- (NSString *)extractBootstrapData:(NSString *)html
-{
-    NSString *jsonString = nil;
-    
-    NSString *start = nil;
-    NSString *startFull = @"var bootstrap_data = \")]}'";
-    NSString *startShrunk = [startFull stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    if ([html rangeOfString:startFull].location != NSNotFound) {
-        start = startFull;
-    }
-    else if ([html rangeOfString:startShrunk].location != NSNotFound) {
-        start = startShrunk;
-    }
-    
-    if (start) {
-        NSScanner* scanner = [NSScanner scannerWithString:html];
-        [scanner scanUpToString:start intoString:nil];
-        [scanner scanString:start intoString:nil];
-        [scanner scanUpToString:@"\";" intoString:&jsonString];
-        jsonString = [self unescapeString:jsonString];
-    }
-    
-    return jsonString;
-}
-
-- (NSString *)extractPiggybackData:(NSString *)html
-{
-    NSString *jsonString = nil;
-    
-    NSString *start = nil;
-    NSString *startFull = @"ls.setItem('PIGGYBACK_DATA', \")]}'";
-    NSString *startShrunk = [startFull stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    if ([html rangeOfString:startFull].location != NSNotFound) {
-        start = startFull;
-    }
-    else if ([html rangeOfString:startShrunk].location != NSNotFound) {
-        start = startShrunk;
-    }
-    
-    if (start) {
-        NSScanner* scanner = [NSScanner scannerWithString:html];
-        [scanner scanUpToString:start intoString:nil];
-        [scanner scanString:start intoString:nil];    
-        [scanner scanUpToString:@"\");" intoString:&jsonString];
-        jsonString = [self unescapeString:jsonString];
-    }   
-        
-    return jsonString;
-}
-
-
-// Modified answer from StackOverflow http://stackoverflow.com/questions/2099349/using-objective-c-cocoa-to-unescape-unicode-characters-ie-u1234
-
-- (NSString *)unescapeString:(NSString *)string
-{
-    // will cause trouble if you have "abc\\\\uvw"
-    // \u to \U
-    NSString *esc1 = [string stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
-    // " to \"
-    NSString *esc2 = [esc1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    // \\" to \"
-    NSString *esc3 = [esc2 stringByReplacingOccurrencesOfString:@"\\\\\"" withString:@"\\\""];
-    NSString *quoted = [[@"\"" stringByAppendingString:esc3] stringByAppendingString:@"\""];
-    NSData *data = [quoted dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //  NSPropertyListFormat format = 0;
-    //  NSString *errorDescr = nil;
-    NSString *unesc = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:NULL];
-    
-    if ([unesc isKindOfClass:[NSString class]]) {
-        // \U to \u
-        return [unesc stringByReplacingOccurrencesOfString:@"\\U" withString:@"\\u"];
-    }
-    return nil;
 }
 
 @end

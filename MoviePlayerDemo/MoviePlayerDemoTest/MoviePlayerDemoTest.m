@@ -36,6 +36,7 @@
             STAssertNotNil(video.contentAttributes, @"mediaURLWithQuality:WZYouTubeVideoQualityLarge");
             NSURL *mediaURL = [video mediaURLWithQuality:WZYouTubeVideoQualityLarge];
             if (!mediaURL) {
+                // debug
                 NSDictionary *player_data = [video.contentAttributes objectForKey:@"player_data"];
                 STAssertNotNil(player_data, @"video.contentAttributes[player_data]");
                 if (player_data) {                    
