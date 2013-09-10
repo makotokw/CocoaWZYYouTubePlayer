@@ -6,18 +6,17 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/makotokw/CocoaWZYouTube"
   s.license      = 'MIT'  
   s.author       = { "Makoto Kawasaki" => "makoto.kw@gmail.com" }
-  s.source       = { :git => "https://github.com/makotokw/CocoaWZYouTubePlayer.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/makotokw/CocoaWZYouTubePlayer.git" }
   s.requires_arc = true
   s.platform     = :ios, '5.0'
   
   s.subspec 'Core' do |core|
-    core.source_files = 'WZYouTubePlayer/Core/*.{h,m}'
-    core.public_header_files = /WZYouTubePlayer\/Core\/[\w_-]+(?!\+Private|\+Local)\.h/;
+    core.source_files = 'Classes/ios/Core/*.{h,m}'
   end
 
   s.subspec 'MoviePlayer' do |mp|
     mp.dependency 'WZYouTubePlayer/Core'
-    mp.source_files = 'WZYouTubePlayer/MoviePlayer/*.{h,m}'
+    mp.source_files = 'Classes/ios/MoviePlayer/*.{h,m}'
     mp.frameworks   = 'MediaPlayer'
   end
   
