@@ -56,7 +56,7 @@ NSString *WZYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
     return self;
 }
 
-- (void)parsePageWithData:(NSData *)data copyTo:(WZYouTubeVideo *)video error:(NSError **)theError
+- (BOOL)parsePageWithData:(NSData *)data copyTo:(WZYouTubeVideo *)video error:(NSError **)theError
 {
     NSError *error = nil;
     NSString* html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -119,6 +119,8 @@ NSString *WZYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
     if (theError) {
         *theError = error;
     }
+    
+    return (error == nil);
 }
 
 - (id)objectWithDictionary:(NSDictionary *)dict forKey:(NSString *)key

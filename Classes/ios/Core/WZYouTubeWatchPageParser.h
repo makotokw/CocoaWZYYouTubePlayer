@@ -23,6 +23,6 @@ extern NSString *WZYouTubeWatchPageContentVideoStreamKey;
 @property NSMutableDictionary *pathComponents;
 
 + (WZYouTubeWatchPageParser *)defaultParser;
-- (void)parsePageWithData:(NSData *)data copyTo:(WZYouTubeVideo *)video error:(NSError **)theError;
+- (BOOL)parsePageWithData:(NSData *)data copyTo:(WZYouTubeVideo *)video error:(NSError **)theError;
 
 @end
