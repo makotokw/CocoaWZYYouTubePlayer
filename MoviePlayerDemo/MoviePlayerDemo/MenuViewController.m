@@ -7,8 +7,8 @@
 
 #import "MenuViewController.h"
 
-#import "WZYouTubePlayer.h"
-#import "WZYouTubeMoviePlayer.h"
+#import "WZYYouTubePlayer.h"
+#import "WZYYouTubeMoviePlayer.h"
 
 @interface MenuViewController ()
 
@@ -109,8 +109,8 @@
     if (indexPath.section == 0) {    
         if ([@"ModalViewController" isEqualToString:item[@"title"]]) {
             NSString *videoId = @"NjXQcGmffu0";
-            WZYouTubeMoviePlayerViewController *moviePlayerViewController
-            = [[WZYouTubeMoviePlayerViewController alloc] initWithVideoID:videoId];
+            WZYYouTubeMoviePlayerViewController *moviePlayerViewController
+            = [[WZYYouTubeMoviePlayerViewController alloc] initWithVideoID:videoId];
             [self presentMoviePlayerViewControllerAnimated:moviePlayerViewController];
         } else {
             [self performSegueWithIdentifier:item[@"segue"] sender:self];

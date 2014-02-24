@@ -7,8 +7,8 @@
 
 #import "SubViewMoviePlayerViewController.h"
 
-#import "WZYouTubePlayer.h"
-#import "WZYouTubeMoviePlayer.h"
+#import "WZYYouTubePlayer.h"
+#import "WZYYouTubeMoviePlayer.h"
 
 @interface SubViewMoviePlayerViewController ()
 
@@ -16,7 +16,7 @@
 
 @implementation SubViewMoviePlayerViewController
 {
-    WZYouTubeMoviePlayerController* _moviePlayerController;
+    WZYYouTubeMoviePlayerController* _moviePlayerController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,8 +34,8 @@
     
 	// Do any additional setup after loading the view.
     
-    WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithVideoID:@"NjXQcGmffu0"];
-    WZYouTubeMoviePlayerController *controller = [[WZYouTubeMoviePlayerController alloc] initWithVideo:video];
+    WZYYouTubeVideo *video = [[WZYYouTubeVideo alloc] initWithVideoID:@"NjXQcGmffu0"];
+    WZYYouTubeMoviePlayerController *controller = [[WZYYouTubeMoviePlayerController alloc] initWithVideo:video];
     controller.view.frame = self.view.bounds;
     controller.view.backgroundColor = [UIColor blackColor];
     controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth |

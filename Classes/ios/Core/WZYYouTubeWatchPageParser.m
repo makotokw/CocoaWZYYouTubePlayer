@@ -1,37 +1,37 @@
 //
-//  WZYouTubeWatchPageParser.m
-//  WZYouTubePlayer
+//  WZYYouTubeWatchPageParser.m
+//  WZYYouTubePlayer
 //
 //  Copyright (c) 2013 makoto_kw. All rights reserved.
 //
 
-#import "WZYouTubeWatchPageParser.h"
-#import "WZYouTubeVideo.h"
-#import "WZYouTubeError.h"
+#import "WZYYouTubeWatchPageParser.h"
+#import "WZYYouTubeVideo.h"
+#import "WZYYouTubeError.h"
 
-NSString *WZYouTubeWatchPageContentKey = @"content";
-NSString *WZYouTubeWatchPageErrorsKey = @"errors";
-NSString *WZYouTubeWatchPageContentVideoTitleKey = @"content/video/title";
-NSString *WZYouTubeWatchPageContentVideoLengthKey = @"content/video/length";
-NSString *WZYouTubeWatchPageContentVideoThumbnailKey = @"content/video/thumbnail";
-NSString *WZYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
+NSString *WZYYouTubeWatchPageContentKey = @"content";
+NSString *WZYYouTubeWatchPageErrorsKey = @"errors";
+NSString *WZYYouTubeWatchPageContentVideoTitleKey = @"content/video/title";
+NSString *WZYYouTubeWatchPageContentVideoLengthKey = @"content/video/length";
+NSString *WZYYouTubeWatchPageContentVideoThumbnailKey = @"content/video/thumbnail";
+NSString *WZYYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
 
-@interface WZYouTubeVideo (Parser)
+@interface WZYYouTubeVideo (Parser)
 @property (retain, readwrite) NSDictionary *contentAttributes;
 @property (retain, readwrite) NSDictionary *streamMap;
 @end
 
-@implementation WZYouTubeWatchPageParser
+@implementation WZYYouTubeWatchPageParser
 
 @synthesize beforeJsonStatement = _beforeJsonStatement, afterJsonStatement = _afterJsonStatement;
 @synthesize pathComponents = _pathComponents;
 
-+ (WZYouTubeWatchPageParser *)defaultParser
++ (WZYYouTubeWatchPageParser *)defaultParser
 {
-    static WZYouTubeWatchPageParser *s = nil;
+    static WZYYouTubeWatchPageParser *s = nil;
     
     if (!s) {
-        s = [[WZYouTubeWatchPageParser alloc] init];
+        s = [[WZYYouTubeWatchPageParser alloc] init];
     }
     return s;
 }
@@ -44,19 +44,19 @@ NSString *WZYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
         _afterJsonStatement = @"\";";
         
         _pathComponents = [@{
-                           WZYouTubeWatchPageContentKey : @[@"content"],
-                           WZYouTubeWatchPageErrorsKey : @[@"errors"],
+                           WZYYouTubeWatchPageContentKey : @[@"content"],
+                           WZYYouTubeWatchPageErrorsKey : @[@"errors"],
                            
-                           WZYouTubeWatchPageContentVideoTitleKey : @[@"video", @"title"],
-                           WZYouTubeWatchPageContentVideoLengthKey : @[@"video", @"length_seconds"],
-                           WZYouTubeWatchPageContentVideoThumbnailKey : @[@"video", @"thumbnail_for_watch"],
-                           WZYouTubeWatchPageContentVideoStreamKey : @[@"player_data", @"fmt_stream_map"],
+                           WZYYouTubeWatchPageContentVideoTitleKey : @[@"video", @"title"],
+                           WZYYouTubeWatchPageContentVideoLengthKey : @[@"video", @"length_seconds"],
+                           WZYYouTubeWatchPageContentVideoThumbnailKey : @[@"video", @"thumbnail_for_watch"],
+                           WZYYouTubeWatchPageContentVideoStreamKey : @[@"player_data", @"fmt_stream_map"],
                            } mutableCopy];
     }
     return self;
 }
 
-- (BOOL)parsePageWithData:(NSData *)data copyTo:(WZYouTubeVideo *)video error:(NSError **)theError
+- (BOOL)parsePageWithData:(NSData *)data copyTo:(WZYYouTubeVideo *)video error:(NSError **)theError
 {
     NSError *error = nil;
     NSString* html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -69,50 +69,50 @@ NSString *WZYouTubeWatchPageContentVideoStreamKey = @"content/video/stream";
             NSDictionary* jsonData = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&jsonError];
             
             if (!jsonError) {
-                NSDictionary *contentAttributes = [self objectWithDictionary:jsonData forKey:WZYouTubeWatchPageContentKey];
+                NSDictionary *contentAttributes = [self objectWithDictionary:jsonData forKey:WZYYouTubeWatchPageContentKey];
                 if (contentAttributes.count == 0) {
-                    NSArray *errors = [self objectWithDictionary:jsonData forKey:WZYouTubeWatchPageErrorsKey];
+                    NSArray *errors = [self objectWithDictionary:jsonData forKey:WZYYouTubeWatchPageErrorsKey];
                     NSString *errorMessage = errors[0];
                     if (!errorMessage) {
                         errorMessage = @"The content data could not be found.";
                     }
-                    error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                                       code:WZYouTubeVideoErrorCodeNoJSONData
+                    error = [WZYYouTubeError errorWithDomain:(NSString *)kWZYYouTubeVideoErrorDomain
+                                                       code:WZYYouTubeVideoErrorCodeNoJSONData
                                                    userInfo:@{NSLocalizedDescriptionKey: errorMessage, @"errors": errors}];
                 } else {
                     if (!video.title) {
-                        video.title = [self objectWithDictionary:contentAttributes forKey:WZYouTubeWatchPageContentVideoTitleKey];
+                        video.title = [self objectWithDictionary:contentAttributes forKey:WZYYouTubeWatchPageContentVideoTitleKey];
                     }
                     if (video.duration == 0) {
-                        NSNumber *lengthSeconds = [self objectWithDictionary:contentAttributes forKey:WZYouTubeWatchPageContentVideoLengthKey];
+                        NSNumber *lengthSeconds = [self objectWithDictionary:contentAttributes forKey:WZYYouTubeWatchPageContentVideoLengthKey];
                         video.duration = lengthSeconds.doubleValue;
                     }
                     if (!video.thumbnailURL) {
-                        NSString *thumbnailForWatch =  [self objectWithDictionary:contentAttributes forKey:WZYouTubeWatchPageContentVideoThumbnailKey];
+                        NSString *thumbnailForWatch =  [self objectWithDictionary:contentAttributes forKey:WZYYouTubeWatchPageContentVideoThumbnailKey];
                         if (thumbnailForWatch) {
                             video.thumbnailURL = [NSURL URLWithString:thumbnailForWatch];
                         }
                     }                    
                     video.contentAttributes = contentAttributes;
-                    video.streamMap = [self objectWithDictionary:contentAttributes forKey:WZYouTubeWatchPageContentVideoStreamKey];
+                    video.streamMap = [self objectWithDictionary:contentAttributes forKey:WZYYouTubeWatchPageContentVideoStreamKey];
                 }
 
                 
             } else {
-                error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                                   code:WZYouTubeVideoErrorCodeNoJSONData
+                error = [WZYYouTubeError errorWithDomain:(NSString *)kWZYYouTubeVideoErrorDomain
+                                                   code:WZYYouTubeVideoErrorCodeNoJSONData
                                                userInfo:@{NSLocalizedDescriptionKey: @"The JSON data could not be found."}];
             }
         } else {
-            error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                               code:WZYouTubeVideoErrorCodeNoJSONData
+            error = [WZYYouTubeError errorWithDomain:(NSString *)kWZYYouTubeVideoErrorDomain
+                                               code:WZYYouTubeVideoErrorCodeNoJSONData
                                            userInfo:[NSDictionary dictionaryWithObject:@"The JSON data could not be found." forKey:NSLocalizedDescriptionKey]];
         }
         
         
     } else {
-        error = [WZYouTubeError errorWithDomain:(NSString *)kWZYouTubeVideoErrorDomain
-                                           code:WZYouTubeVideoErrorCodeInvalidSource
+        error = [WZYYouTubeError errorWithDomain:(NSString *)kWZYYouTubeVideoErrorDomain
+                                           code:WZYYouTubeVideoErrorCodeInvalidSource
                                        userInfo:@{NSLocalizedDescriptionKey: @"Couldn't download the HTML source code. URL might be invalid."}];
     }
     

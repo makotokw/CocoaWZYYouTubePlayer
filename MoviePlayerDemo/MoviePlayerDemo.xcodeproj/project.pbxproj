@@ -13,6 +13,11 @@
 		8FACD75317D9738300674B05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */; };
 		8FACD75917D9738300674B05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FACD75717D9738300674B05 /* InfoPlist.strings */; };
 		8FACD75C17D9738300674B05 /* MoviePlayerDemoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FACD75B17D9738300674B05 /* MoviePlayerDemoTest.m */; };
+		8FFB40B218BAF908009F33FB /* WZYYouTubeWatchPageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB40AA18BAF908009F33FB /* WZYYouTubeWatchPageParser.m */; };
+		8FFB40B318BAF908009F33FB /* WZYYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB40AC18BAF908009F33FB /* WZYYouTubeVideo.m */; };
+		8FFB40B418BAF908009F33FB /* WZYYouTubeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB40AF18BAF908009F33FB /* WZYYouTubeError.m */; };
+		8FFB40BA18BAF918009F33FB /* WZYYouTubeMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB40B518BAF918009F33FB /* WZYYouTubeMoviePlayerController.m */; };
+		8FFB40BB18BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFB40B818BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.m */; };
 		8FFBD79E173A4FD600DDE0C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */; };
 		8FFBD7A0173A4FD600DDE0C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */; };
 		8FFBD7A2173A4FD600DDE0C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD7A1173A4FD600DDE0C6 /* CoreGraphics.framework */; };
@@ -22,16 +27,10 @@
 		8FFBD7B0173A4FD600DDE0C6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FFBD7AF173A4FD600DDE0C6 /* Default.png */; };
 		8FFBD7B2173A4FD600DDE0C6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FFBD7B1173A4FD600DDE0C6 /* Default@2x.png */; };
 		8FFBD7B4173A4FD600DDE0C6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FFBD7B3173A4FD600DDE0C6 /* Default-568h@2x.png */; };
-		8FFBD7C4173A503200DDE0C6 /* WZYouTubeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7BF173A503200DDE0C6 /* WZYouTubeError.m */; };
-		8FFBD7C5173A503200DDE0C6 /* WZYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7C2173A503200DDE0C6 /* WZYouTubeVideo.m */; };
-		8FFBD7CB173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7C8173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m */; };
-		8FFBD7CC173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7CA173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.m */; };
 		8FFBD7D5173A504F00DDE0C6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7D0173A504F00DDE0C6 /* MenuViewController.m */; };
 		8FFBD7D6173A504F00DDE0C6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FFBD7D1173A504F00DDE0C6 /* Storyboard.storyboard */; };
 		8FFBD7D7173A504F00DDE0C6 /* SubViewMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBD7D3173A504F00DDE0C6 /* SubViewMoviePlayerViewController.m */; };
 		8FFBD7D9173A507B00DDE0C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBD7D8173A507B00DDE0C6 /* MediaPlayer.framework */; };
-		8FFD028617DEE6B500583B1E /* WZYouTubePlayer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD028517DEE6B500583B1E /* WZYouTubePlayer.podspec */; };
-		8FFD028917DEECAE00583B1E /* WZYouTubeWatchPageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD028817DEECAE00583B1E /* WZYouTubeWatchPageParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +51,19 @@
 		8FACD75A17D9738300674B05 /* MoviePlayerDemoTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviePlayerDemoTest.h; sourceTree = "<group>"; };
 		8FACD75B17D9738300674B05 /* MoviePlayerDemoTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviePlayerDemoTest.m; sourceTree = "<group>"; };
 		8FACD75D17D9738300674B05 /* MoviePlayerDemoTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoviePlayerDemoTest-Prefix.pch"; sourceTree = "<group>"; };
+		8FFB40AA18BAF908009F33FB /* WZYYouTubeWatchPageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYYouTubeWatchPageParser.m; path = ../Classes/ios/Core/WZYYouTubeWatchPageParser.m; sourceTree = "<group>"; };
+		8FFB40AB18BAF908009F33FB /* WZYYouTubeWatchPageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeWatchPageParser.h; path = ../Classes/ios/Core/WZYYouTubeWatchPageParser.h; sourceTree = "<group>"; };
+		8FFB40AC18BAF908009F33FB /* WZYYouTubeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYYouTubeVideo.m; path = ../Classes/ios/Core/WZYYouTubeVideo.m; sourceTree = "<group>"; };
+		8FFB40AD18BAF908009F33FB /* WZYYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeVideo.h; path = ../Classes/ios/Core/WZYYouTubeVideo.h; sourceTree = "<group>"; };
+		8FFB40AE18BAF908009F33FB /* WZYYouTubePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubePlayer.h; path = ../Classes/ios/Core/WZYYouTubePlayer.h; sourceTree = "<group>"; };
+		8FFB40AF18BAF908009F33FB /* WZYYouTubeError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYYouTubeError.m; path = ../Classes/ios/Core/WZYYouTubeError.m; sourceTree = "<group>"; };
+		8FFB40B018BAF908009F33FB /* WZYYouTubeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeDefines.h; path = ../Classes/ios/Core/WZYYouTubeDefines.h; sourceTree = "<group>"; };
+		8FFB40B118BAF908009F33FB /* WZYYouTubeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeError.h; path = ../Classes/ios/Core/WZYYouTubeError.h; sourceTree = "<group>"; };
+		8FFB40B518BAF918009F33FB /* WZYYouTubeMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYYouTubeMoviePlayerController.m; path = ../Classes/ios/MoviePlayer/WZYYouTubeMoviePlayerController.m; sourceTree = "<group>"; };
+		8FFB40B618BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeMoviePlayerViewController.h; path = ../Classes/ios/MoviePlayer/WZYYouTubeMoviePlayerViewController.h; sourceTree = "<group>"; };
+		8FFB40B718BAF918009F33FB /* WZYYouTubeMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeMoviePlayerController.h; path = ../Classes/ios/MoviePlayer/WZYYouTubeMoviePlayerController.h; sourceTree = "<group>"; };
+		8FFB40B818BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYYouTubeMoviePlayerViewController.m; path = ../Classes/ios/MoviePlayer/WZYYouTubeMoviePlayerViewController.m; sourceTree = "<group>"; };
+		8FFB40B918BAF918009F33FB /* WZYYouTubeMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYYouTubeMoviePlayer.h; path = ../Classes/ios/MoviePlayer/WZYYouTubeMoviePlayer.h; sourceTree = "<group>"; };
 		8FFBD79A173A4FD600DDE0C6 /* MoviePlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFBD79D173A4FD600DDE0C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8FFBD79F173A4FD600DDE0C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,26 +77,12 @@
 		8FFBD7AF173A4FD600DDE0C6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8FFBD7B1173A4FD600DDE0C6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8FFBD7B3173A4FD600DDE0C6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8FFBD7BD173A503200DDE0C6 /* WZYouTubeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeDefines.h; path = ../Classes/ios/Core/WZYouTubeDefines.h; sourceTree = "<group>"; };
-		8FFBD7BE173A503200DDE0C6 /* WZYouTubeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeError.h; path = ../Classes/ios/Core/WZYouTubeError.h; sourceTree = "<group>"; };
-		8FFBD7BF173A503200DDE0C6 /* WZYouTubeError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeError.m; path = ../Classes/ios/Core/WZYouTubeError.m; sourceTree = "<group>"; };
-		8FFBD7C0173A503200DDE0C6 /* WZYouTubePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubePlayer.h; path = ../Classes/ios/Core/WZYouTubePlayer.h; sourceTree = "<group>"; };
-		8FFBD7C1173A503200DDE0C6 /* WZYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeVideo.h; path = ../Classes/ios/Core/WZYouTubeVideo.h; sourceTree = "<group>"; };
-		8FFBD7C2173A503200DDE0C6 /* WZYouTubeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeVideo.m; path = ../Classes/ios/Core/WZYouTubeVideo.m; sourceTree = "<group>"; };
-		8FFBD7C6173A503D00DDE0C6 /* WZYouTubeMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeMoviePlayer.h; path = ../Classes/ios/MoviePlayer/WZYouTubeMoviePlayer.h; sourceTree = "<group>"; };
-		8FFBD7C7173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeMoviePlayerController.h; path = ../Classes/ios/MoviePlayer/WZYouTubeMoviePlayerController.h; sourceTree = "<group>"; };
-		8FFBD7C8173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeMoviePlayerController.m; path = ../Classes/ios/MoviePlayer/WZYouTubeMoviePlayerController.m; sourceTree = "<group>"; };
-		8FFBD7C9173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeMoviePlayerViewController.h; path = ../Classes/ios/MoviePlayer/WZYouTubeMoviePlayerViewController.h; sourceTree = "<group>"; };
-		8FFBD7CA173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeMoviePlayerViewController.m; path = ../Classes/ios/MoviePlayer/WZYouTubeMoviePlayerViewController.m; sourceTree = "<group>"; };
 		8FFBD7CF173A504F00DDE0C6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		8FFBD7D0173A504F00DDE0C6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		8FFBD7D1173A504F00DDE0C6 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		8FFBD7D2173A504F00DDE0C6 /* SubViewMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewMoviePlayerViewController.h; sourceTree = "<group>"; };
 		8FFBD7D3173A504F00DDE0C6 /* SubViewMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewMoviePlayerViewController.m; sourceTree = "<group>"; };
 		8FFBD7D8173A507B00DDE0C6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		8FFD028517DEE6B500583B1E /* WZYouTubePlayer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WZYouTubePlayer.podspec; path = ../WZYouTubePlayer.podspec; sourceTree = "<group>"; };
-		8FFD028717DEECAE00583B1E /* WZYouTubeWatchPageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZYouTubeWatchPageParser.h; path = ../Classes/ios/Core/WZYouTubeWatchPageParser.h; sourceTree = "<group>"; };
-		8FFD028817DEECAE00583B1E /* WZYouTubeWatchPageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZYouTubeWatchPageParser.m; path = ../Classes/ios/Core/WZYouTubeWatchPageParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 				8FACD75417D9738300674B05 /* MoviePlayerDemoTest */,
 				8FFBD79C173A4FD600DDE0C6 /* Frameworks */,
 				8FFBD79B173A4FD600DDE0C6 /* Products */,
-				8FFD028517DEE6B500583B1E /* WZYouTubePlayer.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,14 +204,14 @@
 		8FFBD7BB173A501F00DDE0C6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8FFD028717DEECAE00583B1E /* WZYouTubeWatchPageParser.h */,
-				8FFD028817DEECAE00583B1E /* WZYouTubeWatchPageParser.m */,
-				8FFBD7BD173A503200DDE0C6 /* WZYouTubeDefines.h */,
-				8FFBD7BE173A503200DDE0C6 /* WZYouTubeError.h */,
-				8FFBD7BF173A503200DDE0C6 /* WZYouTubeError.m */,
-				8FFBD7C0173A503200DDE0C6 /* WZYouTubePlayer.h */,
-				8FFBD7C1173A503200DDE0C6 /* WZYouTubeVideo.h */,
-				8FFBD7C2173A503200DDE0C6 /* WZYouTubeVideo.m */,
+				8FFB40AA18BAF908009F33FB /* WZYYouTubeWatchPageParser.m */,
+				8FFB40AB18BAF908009F33FB /* WZYYouTubeWatchPageParser.h */,
+				8FFB40AC18BAF908009F33FB /* WZYYouTubeVideo.m */,
+				8FFB40AD18BAF908009F33FB /* WZYYouTubeVideo.h */,
+				8FFB40AE18BAF908009F33FB /* WZYYouTubePlayer.h */,
+				8FFB40AF18BAF908009F33FB /* WZYYouTubeError.m */,
+				8FFB40B018BAF908009F33FB /* WZYYouTubeDefines.h */,
+				8FFB40B118BAF908009F33FB /* WZYYouTubeError.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -222,11 +219,11 @@
 		8FFBD7BC173A502300DDE0C6 /* MoviePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				8FFBD7C6173A503D00DDE0C6 /* WZYouTubeMoviePlayer.h */,
-				8FFBD7C7173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.h */,
-				8FFBD7C8173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m */,
-				8FFBD7C9173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.h */,
-				8FFBD7CA173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.m */,
+				8FFB40B518BAF918009F33FB /* WZYYouTubeMoviePlayerController.m */,
+				8FFB40B618BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.h */,
+				8FFB40B718BAF918009F33FB /* WZYYouTubeMoviePlayerController.h */,
+				8FFB40B818BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.m */,
+				8FFB40B918BAF918009F33FB /* WZYYouTubeMoviePlayer.h */,
 			);
 			name = MoviePlayer;
 			sourceTree = "<group>";
@@ -315,7 +312,6 @@
 				8FFBD7B2173A4FD600DDE0C6 /* Default@2x.png in Resources */,
 				8FFBD7B4173A4FD600DDE0C6 /* Default-568h@2x.png in Resources */,
 				8FFBD7D6173A504F00DDE0C6 /* Storyboard.storyboard in Resources */,
-				8FFD028617DEE6B500583B1E /* WZYouTubePlayer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,15 +346,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FFB40BB18BAF918009F33FB /* WZYYouTubeMoviePlayerViewController.m in Sources */,
 				8FFBD7AA173A4FD600DDE0C6 /* main.m in Sources */,
 				8FFBD7AE173A4FD600DDE0C6 /* AppDelegate.m in Sources */,
-				8FFBD7C4173A503200DDE0C6 /* WZYouTubeError.m in Sources */,
-				8FFBD7C5173A503200DDE0C6 /* WZYouTubeVideo.m in Sources */,
-				8FFBD7CB173A503D00DDE0C6 /* WZYouTubeMoviePlayerController.m in Sources */,
-				8FFBD7CC173A503D00DDE0C6 /* WZYouTubeMoviePlayerViewController.m in Sources */,
+				8FFB40B318BAF908009F33FB /* WZYYouTubeVideo.m in Sources */,
+				8FFB40B418BAF908009F33FB /* WZYYouTubeError.m in Sources */,
+				8FFB40BA18BAF918009F33FB /* WZYYouTubeMoviePlayerController.m in Sources */,
+				8FFB40B218BAF908009F33FB /* WZYYouTubeWatchPageParser.m in Sources */,
 				8FFBD7D5173A504F00DDE0C6 /* MenuViewController.m in Sources */,
 				8FFBD7D7173A504F00DDE0C6 /* SubViewMoviePlayerViewController.m in Sources */,
-				8FFD028917DEECAE00583B1E /* WZYouTubeWatchPageParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

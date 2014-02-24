@@ -1,20 +1,20 @@
 //
-//  WZYouTubeMoviePlayerViewController.m
-//  WZYouTubePlayer
+//  WZYYouTubeMoviePlayerViewController.m
+//  WZYYouTubePlayer
 //
-//  Copyright (c) 2012-2013 makoto_kw. All rights reserved.
+//  Copyright (c) 2012 makoto_kw. All rights reserved.
 //
 
-#import "WZYouTubeMoviePlayerViewController.h"
-#import "WZYouTubeVideo.h"
+#import "WZYYouTubeMoviePlayerViewController.h"
+#import "WZYYouTubeVideo.h"
 
-@interface WZYouTubeMoviePlayerViewController ()
+@interface WZYYouTubeMoviePlayerViewController ()
 
 @end
 
-@implementation WZYouTubeMoviePlayerViewController
+@implementation WZYYouTubeMoviePlayerViewController
 {
-    WZYouTubeVideo *_video;
+    WZYYouTubeVideo *_video;
 }
 
 @synthesize video = _video;
@@ -43,7 +43,7 @@
 - (id)initWithWatchURL:(NSURL *)watchURL
 {
     if (self = [super init]) {
-        WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithWatchURL:watchURL];
+        WZYYouTubeVideo *video = [[WZYYouTubeVideo alloc] initWithWatchURL:watchURL];
         [self playVideo:video completionHandler:nil];
     }
     return self;
@@ -52,13 +52,13 @@
 - (id)initWithVideoID:(NSString *)videoID
 {
     if (self = [super init]) {
-        WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithVideoID:videoID];
+        WZYYouTubeVideo *video = [[WZYYouTubeVideo alloc] initWithVideoID:videoID];
         [self playVideo:video completionHandler:nil];
     }
     return self;
 }
 
-- (id)initWithVideo:(WZYouTubeVideo *)video
+- (id)initWithVideo:(WZYYouTubeVideo *)video
 {
     if (self = [super init]) {
         [self playVideo:video completionHandler:nil];
@@ -66,13 +66,13 @@
     return self;
 }
 
-- (void)playVideo:(WZYouTubeVideo *)video completionHandler:(WZYouTubeAsyncBlock)completionHandler
+- (void)playVideo:(WZYYouTubeVideo *)video completionHandler:(WZYYouTubeAsyncBlock)completionHandler
 {
     _video = video;
-    __weak WZYouTubeMoviePlayerViewController *me = self;
+    __weak WZYYouTubeMoviePlayerViewController *me = self;
     [_video retriveteDataFromWatchPageWithCompletionHandler:^(NSError *error) {
         if (!error) {
-            NSURL *mediaURL = [video mediaURLWithQuality:WZYouTubeVideoQualityLarge];
+            NSURL *mediaURL = [video mediaURLWithQuality:WZYYouTubeVideoQualityLarge];
             me.moviePlayer.contentURL = mediaURL;
             [me.moviePlayer play];
         }

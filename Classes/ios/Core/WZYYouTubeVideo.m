@@ -1,26 +1,26 @@
 //
-//  WZYouTubeVideo.m
-//  WZYouTubePlayer
+//  WZYYouTubeVideo.m
+//  WZYYouTubePlayer
 //
-//  Copyright (c) 2012-2013 makoto_kw. All rights reserved.
+//  Copyright (c) 2012 makoto_kw. All rights reserved.
 //
 //  refered to the LBYouTubeView/LBYouTubeExtractor
 //  see LBYouTubeView https://github.com/larcus94/LBYouTubeView
 //
 
-#import "WZYouTubeVideo.h"
-#import "WZYouTubeError.h"
-#import "WZYouTubeWatchPageParser.h"
+#import "WZYYouTubeVideo.h"
+#import "WZYYouTubeError.h"
+#import "WZYYouTubeWatchPageParser.h"
 
-const NSString *kWZYouTubeVideoErrorDomain = @"WZYouTubeVideoErrorDomain";
+const NSString *kWZYYouTubeVideoErrorDomain = @"WZYYouTubeVideoErrorDomain";
 static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
 
-@interface WZYouTubeVideo ()
+@interface WZYYouTubeVideo ()
 @property (retain, readwrite) NSDictionary *contentAttributes;
 @property (retain, readwrite) NSArray *streamMap;
 @end
 
-@implementation WZYouTubeVideo
+@implementation WZYYouTubeVideo
 
 @synthesize videoID = _videoID;
 @synthesize title = _title, mediaDescription = _mediaDescription;
@@ -82,7 +82,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     return [self.class watchURLWithVideoID:_videoID];
 }
 
-- (NSURL *)mediaURLWithQuality:(WZYouTubeVideoQuality)quality
+- (NSURL *)mediaURLWithQuality:(WZYYouTubeVideoQuality)quality
 {
     NSURL *mediaURL = nil;
     
@@ -90,13 +90,13 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
         NSString  *URLString;
         NSString *streamURLKey = @"url";
         switch (quality) {
-            case WZYouTubeVideoQualityLarge:
+            case WZYYouTubeVideoQualityLarge:
             {
                 URLString = [[_streamMap objectAtIndex:0] objectForKey:streamURLKey];
                 break;
             }
                 
-            case WZYouTubeVideoQualityMedium:
+            case WZYYouTubeVideoQualityMedium:
             {
                 NSUInteger index = MIN(_streamMap.count-1, 1);
                 URLString = [[_streamMap objectAtIndex:index] objectForKey:streamURLKey];
@@ -115,7 +115,7 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     return mediaURL;
 }
 
-- (void)retriveteDataFromWatchPageWithCompletionHandler:(WZYouTubeAsyncBlock)completionHandler
+- (void)retriveteDataFromWatchPageWithCompletionHandler:(WZYYouTubeAsyncBlock)completionHandler
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.watchURL
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -124,13 +124,13 @@ static NSString *kUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac 
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
     
     
-    __weak WZYouTubeVideo *me = self;
+    __weak WZYYouTubeVideo *me = self;
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                if (!error) {
                                    NSError *parseError = nil;
-                                   [[WZYouTubeWatchPageParser defaultParser] parsePageWithData:data copyTo:me error:&parseError];
+                                   [[WZYYouTubeWatchPageParser defaultParser] parsePageWithData:data copyTo:me error:&parseError];
                                    completionHandler(parseError);
                                } else {
                                    completionHandler(error);

@@ -1,14 +1,14 @@
 //
-//  WZYouTubeVideo.h
-//  WZYouTubePlayer
+//  WZYYouTubeVideo.h
+//  WZYYouTubePlayer
 //
-//  Copyright (c) 2012-2013 makoto_kw. All rights reserved.
+//  Copyright (c) 2012 makoto_kw. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "WZYouTubeDefines.h"
+#import "WZYYouTubeDefines.h"
 
-@interface WZYouTubeVideo : NSObject <NSURLConnectionDataDelegate>
+@interface WZYYouTubeVideo : NSObject <NSURLConnectionDataDelegate>
 
 @property (retain) NSString *videoID;
 @property (retain) NSString *title, *mediaDescription;
@@ -22,7 +22,7 @@
 
 - (id)initWithWatchURL:(NSURL *)watchURL;
 - (id)initWithVideoID:(NSString *)videoID;
-- (void)retriveteDataFromWatchPageWithCompletionHandler:(WZYouTubeAsyncBlock)completionHandler;
-- (NSURL *)mediaURLWithQuality:(WZYouTubeVideoQuality)quality;
+- (void)retriveteDataFromWatchPageWithCompletionHandler:(WZYYouTubeAsyncBlock)completionHandler;
+- (NSURL *)mediaURLWithQuality:(WZYYouTubeVideoQuality)quality;
 
 @end

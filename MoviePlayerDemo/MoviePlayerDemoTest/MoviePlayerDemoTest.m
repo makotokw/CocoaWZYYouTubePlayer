@@ -6,7 +6,7 @@
 //
 
 #import "MoviePlayerDemoTest.h"
-#import "WZYouTubeVideo.h"
+#import "WZYYouTubeVideo.h"
 
 @implementation MoviePlayerDemoTest
 
@@ -28,13 +28,13 @@
 {
     __block BOOL isFinished = NO;
     
-    __block WZYouTubeVideo *video = [[WZYouTubeVideo alloc] initWithVideoID:@"NjXQcGmffu0"];
+    __block WZYYouTubeVideo *video = [[WZYYouTubeVideo alloc] initWithVideoID:@"NjXQcGmffu0"];
         
     [video retriveteDataFromWatchPageWithCompletionHandler:^(NSError *error) {
         STAssertNil(error, @"retriveteDataFromWatchPageWithCompletionHandler");        
         if (!error) {
-            STAssertNotNil(video.contentAttributes, @"mediaURLWithQuality:WZYouTubeVideoQualityLarge");
-            NSURL *mediaURL = [video mediaURLWithQuality:WZYouTubeVideoQualityLarge];
+            STAssertNotNil(video.contentAttributes, @"mediaURLWithQuality:WZYYouTubeVideoQualityLarge");
+            NSURL *mediaURL = [video mediaURLWithQuality:WZYYouTubeVideoQualityLarge];
             if (!mediaURL) {
                 // debug
                 NSDictionary *player_data = [video.contentAttributes objectForKey:@"player_data"];
@@ -47,7 +47,7 @@
                 }
                 NSLog(@"video.contentAttributes = %@", video.contentAttributes);
             }
-            STAssertNotNil(mediaURL, @"mediaURLWithQuality:WZYouTubeVideoQualityLarge");
+            STAssertNotNil(mediaURL, @"mediaURLWithQuality:WZYYouTubeVideoQualityLarge");
         }
         
         video = nil;
